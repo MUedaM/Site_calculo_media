@@ -47,11 +47,11 @@ form input {
     padding: 8px;
 }
 
-form .nome{
+#nome-atividade{
     width: 250px;
 }
 
-form .nota {
+#nota-atividade {
     width: 100px;
     margin-left: 10px;
     margin-right: 10px;
