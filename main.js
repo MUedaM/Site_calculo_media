@@ -1,42 +1,71 @@
-const form = document.getElementById('form-deposito')
-const nomeBeneficiario = document.getElementById('nome-beneficiario')
+const form = document.getElementById('form-atividade');
+const atividades = [];
+const notas = [];
+const spanAprovado = '<span class="resultado aprovado">Aprovado</span>';
+const spanReprovado = '<span class="resultado reprovado">Reprovado</span>';
+const notaMinima = parseFloat(prompt("Digite a nota minima: "))
 
-let validaForm = false;
+let linhas = '';
 
-function validaNome(nomeCompleto) {
-    const nomeArray = nomeCompleto.split(' ')
-    return nomeArray.length >= 2;
+const imagemAprovado = '<img src="./images/aprovado.png" alt="Emoji celelebrando" />';
+const imagemReprovado = '<img src="./images/reprovado.png" alt="Emoji triste" />';
+
+form.addEventListener('submit', function(e){
+    e.preventDefault()
+
+    adicionaLinha();
+    atualizaTabela();
+
+    calculaMedia();
+    atualizaMedia();
+})
+
+function arrendond(x) {
+    return Math.trunc(x*10)/10;
 }
 
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const numeroConta = document.getElementById('numero-conta')
-    const valorDepositado = document.getElementById('valor-depositado')
-    const mensagemDescricao = document.getElementById('descricao')
-    const mensagemSucesso = `Montante no valor: <b>R$ ${valorDepositado.value}</b> depositado para o cliente <b>${nomeBeneficiario.value}</b> - conta: <b>${numeroConta.value}</b>`
+function adicionaLinha() {
+    const inputNome = document.getElementById('nome-atividade')
+    const inputNota = document.getElementById('nota-atividade')
 
-    validaForm = validaNome(nomeBeneficiario.value)
-    if (validaForm) {
-        const displayMensagemSucesso = document.querySelector('.sucesso-mensagem');
-        displayMensagemSucesso.innerHTML = mensagemSucesso;
-        displayMensagemSucesso.style.display = 'block';
+    if (atividades.includes(inputNome.value)) {
+        alert(`A atividade ${inputNome.value} já foi inserida!`)
 
-        nomeBeneficiario.value = '';
-        numeroConta.value = '';
-        valorDepositado.value = '';
-        mensagemDescricao.value = '';
+    } else {      
+        atividades.push(inputNome.value);
+        notas.push(parseFloat(inputNota.value))
+
+        let linha = '<tr>';
+        linha += `<td>${inputNome.value}</td>`;
+        linha += `<td>${inputNota.value}</td>`;
+        linha += `<td>${inputNota.value >= notaMinima ? imagemAprovado : imagemReprovado}</td>`;
+        linha += '</tr>';
+
+        linhas += linha;
+
+        inputNome.value = '';
+        inputNota.value = '';
+    }    
+}
+
+function calculaMedia() {
+    let somaDasNotas = 0;
+
+    for (let i = 0; i < notas.length; i++) {
+        somaDasNotas += notas[i];
     }
-})
 
-nomeBeneficiario.addEventListener('keyup', function(e) {
-    validaForm = validaNome(e.target.value);
+    return arrendond(somaDasNotas / notas.length);
+}
 
-    if(validaForm) {
-        nomeBeneficiario.classList.remove('error')
-        document.querySelector('.erro-mensagem').style.display = 'none'
-    } else {
-        nomeBeneficiario.classList.add('error')
-        document.querySelector('.erro-mensagem').style.display = 'block'
-    }
-})
+function atualizaTabela() {
+    const corpoTabela = document.querySelector('tbody');
+    corpoTabela.innerHTML = linhas;
+}
+
+function atualizaMedia() {
+    const mediafinal = calculaMedia()
+
+    document.getElementById('media-valor').innerHTML = mediafinal
+    document.getElementById('media-resultado').innerHTML = mediafinal >= notaMinima ? spanAprovado : spanReprovado;
+}

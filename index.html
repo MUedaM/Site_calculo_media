@@ -1,35 +1,49 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML com JS</title>
-    <link rel="stylesheet" href="./main.css" />
+    <title>Calculadora de média</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./main.css">
 </head>
 <body>
     <div class="container">
-        <h1>EBAC Banking</h1>
-        <h2>Depósitos</h2>
-        <form id="form-deposito">
-            <input type="text" id="nome-beneficiario" required placeholder="Nome completo do beneficiário" />
-            <p class="erro-mensagem">
-                <b>O NOME PRECISA ESTAR COMPLETO</b>
-            </p>
-            <input type="number" id="numero-conta" required placeholder="Número da conta" />
-            <input type="number" id="valor-depositado" required placeholder="Valor" />
-            <textarea id="descricao" placeholder="Descrição (opcional)"></textarea>
-            <button type="submit" id="botao-depositar">Depositar</button>
+        <header>
+            <img src="./images/logo.png" alt="capelo e diploma">
+            <h1>Calculadora de média</h1>
+        </header>
+        <form id="form-atividade">
+            <input type="text" required id="nome-atividade" class="nome" placeholder="Nome da atividade" style="text-align: center"/>
+            <input type="number" required id="nota-atividade" class="nota" placeholder="Nota" min="0" max="10" style="text-align: center"/>
+            <button type="submit">Adicionar +</button>
         </form>
-        <p class="sucesso-mensagem">
-            Preencha corretamente o <b>formulario</b> e clique em <b>DEPOSITAR</b>
-        </p>
+        <table cellspacing = "0">
+            <thead>
+                <tr>
+                    <th>Nome da atividade</th>
+                    <th>Nota</th>
+                    <th>Aprovado?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>Média final</td>
+                    <td id="media-valor">---</td>
+                    <td id="media-resultado">---</td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
     <script src="./main.js"></script>
-    <!--
-    <script>
-        alert('Olá mundo index')
-    </script>
-    -->
 </body>
 </html>

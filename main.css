@@ -2,65 +2,120 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: arial;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #E7E7E7;
+    padding-top: 100px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+header img {
+    height: 36px;
+    margin-right: 16px;
+}
+
+header h1 {
+    font-size: 40px;
+    font-weight: bold;
 }
 
 .container {
-    margin: 25px auto;
-    max-width: 640px;
+    max-width: 700px;
     width: 100%;
+    margin: 0 auto;
 }
 
 form {
-    margin-top: 16px;
-}
-
-input, textarea, button {
-    display: block;
-    padding: 12px;
-    margin-bottom: 8px;
+    display: flex;
+    max-width: 750px;
     width: 100%;
-    resize: none;
+    margin-bottom: 56px;
 }
 
-textarea {
-    height: 150px;
-}
-
-button {
-    background-color: #2ecc71;
+form input {
+    font-size: 24px;
+    background-color: #ffff;
     border: none;
-    text-transform: uppercase;
+    border-bottom: 2px solid #182c61;
+    padding: 8px;
+}
+
+form .nome{
+    width: 250px;
+}
+
+form .nota {
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+form input:focus {
+    outline-color: blue;
+}
+
+form button {
+    background-color: #182c61;
     color: #fff;
+    font-size: 24px;
     font-weight: bold;
-    font-size: 18px;
-    font-style: italic;
+    border: none;
     cursor: pointer;
+    padding: 8px;
 }
 
-button:hover {
-    background-color: #27ae60;
+form button:hover {
+    background-color: blue;
 }
 
-.sucesso-mensagem {
-    background-color: #2e51b3;
+table {
+    width: 100%;
+}
+
+table th {
+    border-bottom: 2px solid #000;
+    padding: 16px;
+    font-size: 24px;
+    font-weight: bold;
+    width: 300px;
+}
+
+table td {
+    padding: 16px 0;
+    text-align: center;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+table td img {
+    height: 30px;
+}
+
+.resultado {
+    padding: 8px;
+    font-weight: bold;
     color: #fff;
-    padding: 12px;
-    text-align: center; 
-    font-style: italic;
-    text-transform: uppercase;   
+    background-color: #000;
+    border-radius: 3px;
 }
 
-.erro-mensagem {
-    padding: 3px;
-    color: red;
-    margin-bottom: 8px;
-    font-size: 12px;
-    display: none;
+.aprovado {
+    background-color: #009432;
 }
 
-input.error {
-    color: red;
-    border-color: red;
-    outline-color: red;
+.reprovado {
+    background-color: rgb(156, 0, 0);
 }
